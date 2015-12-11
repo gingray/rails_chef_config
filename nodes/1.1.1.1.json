@@ -1,0 +1,66 @@
+{
+  "run_list": [
+    "recipe[zsh]",
+    "recipe[rvm::system]",
+    "recipe[rvm::user]",
+    "recipe[nginx]",
+    "recipe[postgresql::server]",
+    "recipe[database::postgresql]",
+    "recipe[unicorn]",
+    "recipe[rails]"
+  ],
+  "users": ["deploy"],
+  "rvm":{
+    "default_ruby":"ruby-2.2.1",
+    "rubies": ["2.2.1"],
+    "install_rubies": true,
+    "user_installs": [
+      {
+        "user": "deploy",
+        "default_ruby": "ruby-2.2.1"
+      }
+    ]
+  },
+  "postgresql":{
+    "password":{
+      "postgres": "33gJxnWXmRto"
+    }
+  },
+  "unicorn": {
+    "options": { "backlog": "64" },
+    "preload_app": true,
+    "worker_processes": "2",
+    "worker_timeout": "30",
+    "after_fork": "defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection",
+    "before_fork": "defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!",
+    "config_file": "/home/apps/my_app/shared/unicorn.rb",
+    "listen": ["/home/apps/my_app/shared/tmp/sockets/unicorn.urchi.sock"],
+    "pid": "/home/apps/my_app/shared/tmp/pids/unicorn.pid",
+    "stderr_path": "/home/apps/my_app/shared/log/unicorn.log",
+    "stdout_path": "/home/apps/my_app/shared/log/unicorn.log",
+    "working_directory": "/home/apps/my_app/current"
+  },
+  "sites":[
+    {
+      "deploy_user":{
+        "name": "deploy",
+        "passwd":"vf7JBUCDO5mY",
+        "ssh": "",
+        "home_path": "/home/apps/my_app"
+      },
+      "app_name": "my_app",
+      "hostname": ["my-domain.com","www.my-domain.com"],
+      "databases":[
+        {
+          "username":"my_app_user",
+          "password":"zCsXWkrP4k5a",
+          "host": "127.0.0.1",
+          "database":"my_app_production",
+          "pool_size":"25",
+          "env": "production",
+          "adapter": "postgresql"
+        }
+      ]
+    }
+  ]
+}

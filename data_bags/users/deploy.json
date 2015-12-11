@@ -1,0 +1,8 @@
+{
+  "id": "deploy",
+  "groups": [ "apps", "sudo" ],
+  "shell": "\/bin\/zsh",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgQ7UykZeX745c786QIrO/W/ltgKVrBZJ06KwH/ytrEPymOzJ6pJ0pHvQsjftQA7378sRDE1P5gnj2E0bQGp4+EtajqBFk/va/nvfRhPLto+4lInDfXmkSqxUQWaK28le8aDlEFHdQsOMGexJTWwyer2EjOIrmSN09wQSgFac238PLz3UABZtXHRBOVvCKcCRqAf+fS75e/WsMNt/U1Mf4werZ5AmNv5vTmJV/UOxPhrGZICeVXoqfDVdVhO/GM0qd7Y+2C01QFkejljAsWUjK+NfAjEKr/4rlJ4abYOmiueKn28wvO1MPlyfUYRo4gUy5LDZcJ0hJwfSAzBDd0iyN gingray@gingray-pc"
+  ]
+}

@@ -1,0 +1,15 @@
+<% @environments.each do |env| %>
+<%= env["env"] %>:
+  adapter:   <%= env["adapter"] %>
+  database:  <%= env["database"] %>
+  username:  <%= env["username"] %>
+  password:  <%= env["password"] %>
+  host:      <%= env["host"] %>
+  reconnect: true
+  encoding: utf8
+  <% if env["pool_size"] %>
+  pool: <%= env["pool_size"] %>
+  <% else %>
+  pool: 25
+  <% end %>
+  <% end %>
